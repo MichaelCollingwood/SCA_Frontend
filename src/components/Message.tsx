@@ -13,7 +13,7 @@ const Message = (props: MessageContent) => {
                     primary={<Typography variant="body1">{text}</Typography>}
                     secondary={
                         <Table size="small" aria-label="a dense table">
-                            {sources.map(({ name, timestamp, verif }) => (<TableRow sx={{
+                            {[...sources].reverse().map(({ name, timestamp, verif }) => (<TableRow sx={{
                                 color: (verif ? green[600] : red[500])
                             }}>
                                 <TableCell component='th'>{<Typography variant="caption">{name}</Typography>}</TableCell>
