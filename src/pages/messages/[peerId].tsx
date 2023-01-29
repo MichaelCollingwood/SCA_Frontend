@@ -1,9 +1,11 @@
-import { Stack, Button } from '@mui/material';
+import { Stack, Button, Card, Paper, TextField } from '@mui/material';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import fetchMessages, { FetchedMessage } from '../../client/fetchMessages';
+import sendMessage from '../../client/sendMessage';
 import { Header } from '../../components/Head';
 import { Messages } from '../../components/Messages';
+import MessagesCard from '../../components/MessagesCard';
 import { Navbar } from '../../components/NavBar';
 
 export type MessageContent = {
@@ -29,10 +31,11 @@ export const parseFetchedMessages = (
 export default function MessagePage() {
     const router = useRouter();
     const [messages, setMessages] = useState<MessageContent[]>([])
+    const [reply, setReply] = useState<string>()
+    const peerId = router.query['peerId'] as string;
 
     useEffect(() => {
-        console.log('router.query peerId', router.query['peerId'])
-        fetchMessages(router.query['peerId'] as string)
+        peerId && fetchMessages(peerId as string)
             .then((fetchedMessages) => {
                 setMessages(
                     parseFetchedMessages(fetchedMessages)
@@ -42,13 +45,28 @@ export default function MessagePage() {
                 console.log(error);
                 router.push('/error');
             });
-    }, [router.query['peerId']])
+    }, [peerId])
 
     return (
         <div className='flex flex-col h-screen'>
             <Header />
             <Navbar />
-            <Messages messages={messages}/>
+            <MessagesCard>
+                <Messages messages={messages}/>
+                <Stack direction='row' justifyContent='space-between'>
+                    <TextField onChange={(v) => setReply(v.target.value)} placeholder='Reply' />
+                    <Button onClick={() => sendMessage({
+                        peerId,
+                        signedMessage: {
+                            message: {
+                                data: reply ?? '',
+                                source_trace: [],
+                            },
+                            encrypted_hashes: []
+                        }
+                    })}>Send</Button>
+                </Stack>
+            </MessagesCard>
         </div>
     );
 }

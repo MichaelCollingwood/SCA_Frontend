@@ -14,8 +14,10 @@ export type FetchedMessage = {
   verifs: boolean[];
 };
 
-export default async (peerId: string): Promise<FetchedMessage[]> => {
+const fetchMessages = async (peerId: string): Promise<FetchedMessage[]> => {
   const response = await fetch("http://localhost:8000/" + peerId);
 
   return await response.json();
 };
+
+export default fetchMessages;
