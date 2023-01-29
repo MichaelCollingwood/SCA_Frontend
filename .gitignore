@@ -1,0 +1,8 @@
+**/__pycache__/
+node_modules/
+.idea
+.next
+package-lock.json
+
+**/queues/
+**/publicKeys/

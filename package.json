@@ -1,0 +1,42 @@
+{
+  "name": "signaturechainingappbackend",
+  "version": "1.0.0",
+  "description": "Authenticity of data is a modern day issue. Who's deep-faked what and where did someone actually get an image is a real problem as disinformation is used like a tool.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.6",
+    "next": "^12.3.1",
+    "react": "^18.2.0",
+    "react-data-table-component": "^7.5.3",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.7.23",
+    "@types/react": "18.0.21",
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.17",
+    "tailwindcss": "^3.1.8",
+    "typescript": "4.8.4"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelCollingwood/SignatureChainingExperiment.git"
+  },
+  "author": "MichaelCollingwood",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MichaelCollingwood/SignatureChainingExperiment/issues"
+  },
+  "homepage": "https://github.com/MichaelCollingwood/SignatureChainingExperiment#readme"
+}
