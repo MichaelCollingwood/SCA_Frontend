@@ -9,7 +9,7 @@ export type FetchedMessage = {
         timestamp: string;
       }[];
     };
-    encrypted_hashes: number[];
+    encrypted_hashes: BigInt[];
   };
   verifs: boolean[];
 };

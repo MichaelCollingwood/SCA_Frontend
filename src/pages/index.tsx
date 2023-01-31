@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { Header } from '../components/Head';
-import { Navbar } from '../components/NavBar';
+import Navbar from '../components/NavBar';
 
 export default function Home() {
   const router = useRouter();
@@ -10,7 +9,6 @@ export default function Home() {
 
   return (
     <div>
-      <Header />
       <Navbar />
       <input
         placeholder='peer id'

@@ -3,10 +3,9 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import fetchMessages, { FetchedMessage } from '../../client/fetchMessages';
 import sendMessage from '../../client/sendMessage';
-import { Header } from '../../components/Head';
 import { Messages } from '../../components/Messages';
 import MessagesCard from '../../components/MessagesCard';
-import { Navbar } from '../../components/NavBar';
+import Navbar from '../../components/NavBar';
 
 export type MessageContent = {
     text: string;
@@ -15,6 +14,7 @@ export type MessageContent = {
         timestamp: string;
         verif: boolean;
     }[];
+    encryptedHashes: BigInt[];
 };
 
 export const parseFetchedMessages = (
@@ -26,6 +26,7 @@ export const parseFetchedMessages = (
         timestamp: trace.timestamp,
         verif: fetchedMessage.verifs[index],
       })),
+      encryptedHashes: fetchedMessage.signed_message.encrypted_hashes,
     }));
 
 export default function MessagePage() {
@@ -49,22 +50,28 @@ export default function MessagePage() {
 
     return (
         <div className='flex flex-col h-screen'>
-            <Header />
             <Navbar />
             <MessagesCard>
                 <Messages messages={messages}/>
                 <Stack direction='row' justifyContent='space-between'>
-                    <TextField onChange={(v) => setReply(v.target.value)} placeholder='Reply' />
-                    <Button onClick={() => sendMessage({
-                        peerId,
-                        signedMessage: {
-                            message: {
-                                data: reply ?? '',
-                                source_trace: [],
-                            },
-                            encrypted_hashes: []
+                    <TextField
+                        onChange={(v) => setReply(v.target.value)}
+                        sx={{ margin: 2 }}
+                        placeholder='Reply'
+                    />
+                    <Button
+                        onClick={() => sendMessage({
+                            peerId,
+                            signedMessage: {
+                                message: {
+                                    data: reply ?? '',
+                                    source_trace: [],
+                                },
+                                encrypted_hashes: []
+                            }})
                         }
-                    })}>Send</Button>
+                        sx={{ margin: 2 }}
+                    >Send</Button>
                 </Stack>
             </MessagesCard>
         </div>

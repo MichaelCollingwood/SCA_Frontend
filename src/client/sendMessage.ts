@@ -6,7 +6,7 @@ export type SignedMessage = {
       timestamp: string;
     }[];
   };
-  encrypted_hashes: number[];
+  encrypted_hashes: BigInt[];
 };
 
 export type SendMessageProps = {
@@ -17,11 +17,12 @@ export type SendMessageProps = {
 const sendMessage = async (props: SendMessageProps): Promise<void> => {
   const { peerId, signedMessage } = props;
 
-  console.log(peerId, signedMessage);
-
   const response = await fetch("http://localhost:8000/" + peerId, {
     method: "POST",
     body: JSON.stringify(signedMessage),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
 
   return await response.json();
