@@ -1,14 +1,9 @@
-import { useRouter } from 'next/router';
-import React from 'react';
-import Navbar from '../components/NavBar';
+import { useRouter } from "next/router";
+import React from "react";
+import Navbar from "../components/NavBar";
 
 export default function Home() {
   const router = useRouter();
 
-  return (
-    <div>
-      <Navbar />
-      Error!
-    </div>
-  );
+  return <div>Error!</div>;
 }

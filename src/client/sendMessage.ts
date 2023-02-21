@@ -6,7 +6,7 @@ export type SignedMessage = {
       timestamp: string;
     }[];
   };
-  encrypted_hashes: BigInt[];
+  encrypted_hashes: string[];
 };
 
 export type SendMessageProps = {
