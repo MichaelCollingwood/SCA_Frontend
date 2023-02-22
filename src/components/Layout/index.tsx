@@ -1,3 +1,4 @@
+import { Box, Grid } from "@mui/material";
 import NavBar from "../NavBar";
 
 type LayoutProps = {
@@ -10,7 +11,19 @@ const Layout = (props: LayoutProps) => {
   return (
     <div>
       <NavBar />
-      {children}
+      <Grid
+        container
+        spacing={2}
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Grid item xs={3}></Grid>
+        <Grid item xs={6}>
+          {children}
+        </Grid>
+        <Grid item xs={3}></Grid>
+      </Grid>
     </div>
   );
 };

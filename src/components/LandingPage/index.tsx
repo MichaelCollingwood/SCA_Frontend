@@ -1,4 +1,4 @@
-import { TextField, Button, Stack } from "@mui/material";
+import { TextField, Button, Stack, Box } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import * as Styled from "./styles";
@@ -9,7 +9,7 @@ const LandingPage = () => {
   const [peerId, setPeerId] = useState<string>();
 
   return (
-    <Styled.SearchCard>
+    <Styled.SearchCard sx={{ display: "inline-flex" }}>
       <Stack direction="row" spacing={2}>
         <TextField
           placeholder="friend id"
